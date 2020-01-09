@@ -10,7 +10,7 @@ public class APIClass {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        UsersAPI userAPI=retrofit.create(UsersAPI.class);
-        return userAPI;
+        UsersAPI usersAPI=retrofit.create(UsersAPI.class);
+        return usersAPI;
     }
 }

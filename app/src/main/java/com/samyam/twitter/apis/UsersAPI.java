@@ -13,6 +13,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -21,10 +22,10 @@ import retrofit2.http.Part;
 public interface UsersAPI {
     @FormUrlEncoded
     @POST("user/login")
-    Call<SignUp> checkUser(@Field("email") String username, @Field("password") String password);
+    Call<SignUp> checkUser(@Field("email") String email, @Field("password") String password);
 
 
-    @POST("user/signup")
+    @POST("user/register")
     Call<SignUp> register(@Body User cud);
 
     @Multipart
@@ -34,9 +35,12 @@ public interface UsersAPI {
     @POST("user/check")
     Call<Check> check(@Body User email);
 
-    @POST("tweet")
+//    @GET("tweet")
+//    Call<List<Tweets>> GetTweet();
+
+    @GET("tweet")
     Call<List<Tweets>> GetTweet(@Header("Authorization") String token);
 
-    @POST("user/me")
+    @GET("user/me")
     Call<User> getUser(@Header("Authorization") String token);
 }

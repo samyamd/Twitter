@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 //    ImageButton ib_show_P;
     TextView forget;
     Button login;
-    public static String Token="";
+    public static String Token="Bearer ";
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!TextUtils.isEmpty( email.getText().toString() )) {
                     if (!TextUtils.isEmpty( password.getText().toString() )) {
-                        User user = new User( email.getText().toString(),
-                                password.getText().toString() );
+                        User user = new User(email.getText().toString(),password.getText().toString());
                         loginCheck(user);
                     } else {
                         password.setError( "Please Provide Password" );
@@ -68,11 +67,8 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent( LoginActivity.this,HomeActivity.class );
             Token= loginData.Token;
             startActivity( intent );
-            //Toast.makeText( this, "welcome "+loginData.Token,Toast.LENGTH_SHORT ).show();
-
         } else {
-            Toast.makeText(this, "Either username or password is incorrect", Toast.LENGTH_SHORT).show();
-            // etUsername.requestFocus();
+            Toast.makeText(this, "Email or Password Incorrect", Toast.LENGTH_SHORT).show();
         }
     }
 }

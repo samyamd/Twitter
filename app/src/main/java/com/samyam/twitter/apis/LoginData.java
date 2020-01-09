@@ -11,15 +11,15 @@ public class LoginData {
     boolean isSuccess = false;
     public static String Token;
 
-    public boolean checkUser(String username, String password) {
+    public boolean checkUser(String email, String password) {
 
-        APIClass usersAPI = new APIClass();
-        Call<SignUp> usersCall = usersAPI.calls().checkUser(username, password);
+        APIClass apiClass = new APIClass();
+        Call<SignUp> usersCall = apiClass.calls().checkUser(email, password);
 
         try {
             Response<SignUp> loginResponse = usersCall.execute();
             if (loginResponse.isSuccessful() &&
-                    loginResponse.body().getStatus().equals("Login success!")) {
+                    loginResponse.body().getStatus().equals("Successful")) {
                 SignUp signUpResponse=loginResponse.body();
                 Token=signUpResponse.getToken();
 
