@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
                     intent.putExtra( "username",username );
                     intent.putExtra( "password",password.getText().toString() );
                     startActivity( intent );
-                    Toast.makeText(ProfileActivity.this, ""+password.getText().toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ProfileActivity.this, ""+password.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

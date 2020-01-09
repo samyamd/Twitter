@@ -1,17 +1,15 @@
 package com.samyam.twitter.model;
 
 public class ImageModel {
-    private  String imageFile;
+    private  String image;
 
-    public ImageModel(String imageFile) {
-        this.imageFile = imageFile;
+    public ImageModel(String image) {
+        this.image = image;
     }
 
-    public String getImageFile() {
-        return imageFile;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageFile(String imageFile) {
-        this.imageFile = imageFile;
-    }
+
 }

@@ -29,8 +29,8 @@ public interface UsersAPI {
     Call<SignUp> register(@Body User cud);
 
     @Multipart
-    @POST("upload")
-    Call<ImageModel> uploadImage(@Part MultipartBody.Part imageFile);
+    @POST("user/upload")
+    Call<ImageModel> uploadImage(@Part MultipartBody.Part image);
 
     @POST("user/check")
     Call<Check> check(@Body User email);

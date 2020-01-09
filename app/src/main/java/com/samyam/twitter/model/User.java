@@ -3,17 +3,17 @@ package com.samyam.twitter.model;
 public class User {
     String email;
     String password;
-    String username;
+    String name;
     String image;
 
     public User(String email) {
         this.email = email;
     }
 
-    public User(String email, String password, String username, String image) {
+    public User(String email, String password, String name, String image) {
         this.email = email;
         this.password = password;
-        this.username = username;
+        this.name = name;
         this.image = image;
     }
 
@@ -39,11 +39,11 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String name) {
+        this.name = name;
     }
 
     public String getImage() {
