@@ -65,9 +65,8 @@ public class ImageActivity extends AppCompatActivity {
                 if (imagePath.isEmpty()) {
                     Toast.makeText(ImageActivity.this, "Select Image first", Toast.LENGTH_SHORT).show();
                 } else {
-//                    saveOnlyImage();
+                    saveOnlyImage();
                     signUp();
-//                    Toast.makeText(ImageActivity.this, ""+email +" . "+password+" . "+username, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -106,27 +105,27 @@ public class ImageActivity extends AppCompatActivity {
         return result;
     }
 
-//    private void saveOnlyImage() {
-//        File file = new File(imagePath);
-//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        MultipartBody.Part body = MultipartBody.Part.createFormData("image",
-//                file.getName(), requestBody);
-//
-//        APIClass usersAPI = new APIClass();
-//        Call<ImageModel> response = usersAPI.calls().uploadImage(body);
-//
-//        StrictModeClass.StrictMode();
-//        //Using Synchronous method
-//        try {
-//            Response<ImageModel> imageResponse = response.execute();
-//            imageName = imageResponse.body().getFilename();
-//
-//        } catch (IOException e) {
-//            Toast.makeText(this, "Catch " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//            e.printStackTrace();
-//        }
-//        imageName = "1578565317549pietersen.jpg";
-//    }
+    private void saveOnlyImage() {
+        File file = new File(imagePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image",
+                file.getName(), requestBody);
+
+        APIClass usersAPI = new APIClass();
+        Call<ImageModel> response = usersAPI.calls().uploadImage(body);
+
+        StrictModeClass.StrictMode();
+        //Using Synchronous method
+        try {
+            Response<ImageModel> imageResponse = response.execute();
+            imageName = imageResponse.body().getFilename();
+
+        } catch (IOException e) {
+            Toast.makeText(this, "Catch " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        imageName = "1578565317549pietersen.jpg";
+    }
 
     private void signUp() {
         User users = new User(email, password, username, "1578565317549pietersen.jpg");
@@ -144,33 +143,7 @@ public class ImageActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SignUp> call, Throwable t) {
-
             }
         });
-
-//        APIClass usersAPI = new APIClass();
-//        final Call<SignUp> signUpCall = usersAPI.calls().register(users);
-//        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
-//
-////        signUpCall.enqueue(new Callback<SignUp>() {
-////            @Override
-////            public void onResponse(Call<SignUp> call, Response<SignUp> response) {
-////                if (!response.isSuccessful()) {
-////                    Toast.makeText(ImageActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-////                    return;
-////                }
-////                SignUp signUpResponse = response.body();
-////                token = "Bearer " +signUpResponse.getToken();
-////                Log.d("token", token);
-////                Intent intent = new Intent(ImageActivity.this, HomeActivity.class);
-////                intent.putExtra("token", token);
-////                startActivity(intent);
-////            }
-////
-////            @Override
-////            public void onFailure(Call<SignUp> call, Throwable t) {
-////                Toast.makeText(ImageActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-////            }
-////        });
     }
 }
