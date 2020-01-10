@@ -19,10 +19,9 @@ import com.samyam.twitter.strictMode.StrictModeClass;
 public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
-//    ImageButton ib_show_P;
     TextView forget;
     Button login;
-    public static String Token="Bearer ";
+    public static String token="";
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         StrictModeClass.StrictMode();
         if (loginData.checkUser(user.getEmail(), user.getPassword())) {
             Intent intent = new Intent( LoginActivity.this,HomeActivity.class );
-            Token= loginData.Token;
+            token= "Bearer "+loginData.Token;
+            Toast.makeText(this, ""+token, Toast.LENGTH_SHORT).show();
             startActivity( intent );
         } else {
             Toast.makeText(this, "Email or Password Incorrect", Toast.LENGTH_SHORT).show();

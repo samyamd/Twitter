@@ -48,12 +48,12 @@ public class HomeFragment extends Fragment {
 
     private void loadCurrentUser() {
         String token;
-        if (la.Token.equals("Bearer ")) {
+        if (la.token.isEmpty()) {
             token = img.token;
             //Toast.makeText(getContext(), "token " +token, Toast.LENGTH_SHORT).show();
 
         } else {
-            token = la.Token;
+            token = la.token;
             // Toast.makeText(getContext(), "token " +token, Toast.LENGTH_SHORT).show();
         }
 

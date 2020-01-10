@@ -36,7 +36,7 @@ public class ImageActivity extends AppCompatActivity {
     Button login;
     String password, email, username, imageName;
     String imagePath = "";
-    public static String token = "Bearer ";
+    public static String token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +64,9 @@ public class ImageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (imagePath.isEmpty()) {
                     Toast.makeText(ImageActivity.this, "Select Image first", Toast.LENGTH_SHORT).show();
-
                 } else {
-                    Toast.makeText(ImageActivity.this, "Allah" + imagePath, Toast.LENGTH_SHORT).show();
-                   // saveOnlyImage();
-
-                signUp();
+                    saveOnlyImage();
+                    signUp();
                 }
             }
         });
@@ -108,7 +105,6 @@ public class ImageActivity extends AppCompatActivity {
     }
 
     private void saveOnlyImage() {
-        Toast.makeText(this, "Something wrong", Toast.LENGTH_SHORT).show();
         File file = new File(imagePath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("image",
@@ -117,26 +113,24 @@ public class ImageActivity extends AppCompatActivity {
         APIClass usersAPI = new APIClass();
         Call<ImageModel> response = usersAPI.calls().uploadImage(body);
 
-        Toast.makeText(this, "after image ", Toast.LENGTH_SHORT).show();
-
         StrictModeClass.StrictMode();
         //Using Synchronous method
         try {
-            Response<ImageModel> imageResponseResponse = response.execute();
-            imageName = imageResponseResponse.body().getImage();
-            Toast.makeText(this, "after image " + imageName, Toast.LENGTH_SHORT).show();
+            Response<ImageModel> imageResponse = response.execute();
+            imageName = imageResponse.body().getFilename();
 
         } catch (IOException e) {
-            Toast.makeText(this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Catch " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+        imageName = "1578565317549pietersen.jpg";
     }
 
     private void signUp() {
-        User users = new User(email, password, username, "1578565317549pietersen.jpg");
+        User users = new User(email, password, username, "");
 
         APIClass usersAPI = new APIClass();
-        final Call<SignUp> signUpCall = usersAPI.calls().register(users);
+        Call<SignUp> signUpCall = usersAPI.calls().register(users);
 
         signUpCall.enqueue(new Callback<SignUp>() {
             @Override
@@ -146,7 +140,7 @@ public class ImageActivity extends AppCompatActivity {
                     return;
                 }
                 SignUp signUpResponse = response.body();
-                token = signUpResponse.getToken();
+                token = "Bearer " +signUpResponse.getToken();
                 Log.d("token", token);
                 Intent intent = new Intent(ImageActivity.this, HomeActivity.class);
                 intent.putExtra("token", token);
