@@ -24,7 +24,7 @@ public interface UsersAPI {
     @POST("user/login")
     Call<SignUp> checkUser(@Field("email") String email, @Field("password") String password);
 
-    @FormUrlEncoded
+
     @POST("user/register")
     Call<SignUp> register(@Body User users);
 
